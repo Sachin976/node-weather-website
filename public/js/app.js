@@ -1,5 +1,3 @@
-console.log("client side javascript loaded successfully!")
-
 const weatherForm = document.querySelector("form")
 const search = document.querySelector("input")
 
