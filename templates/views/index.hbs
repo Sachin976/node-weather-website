@@ -9,8 +9,9 @@
     <body>
         <div class="main-content">
             {{>header}}
-            <p id="quote">"Wherever you go, no matter what the weather, always bring your own shine"</p>
-            <pre>                                                                        <strong>-Anthony J. D'angelo</strong></pre>
+            <h3>Quote of the day:</h3>
+            <q id="quote">{{quote}}</q>
+            <pre id = "author"><strong>-{{author}}</strong></pre>
             <p>Check the weather of the place you want :)</p>
             <form>
                 <input placeholder="Location">

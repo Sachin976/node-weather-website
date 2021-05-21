@@ -3,6 +3,7 @@ const express = require("express");
 const hbs = require('hbs')
 const forecast = require('./utils/forecast.js')
 const geocode = require('./utils/geocode.js')
+const getQuotes = require('./utils/quotes.js');
 const app = express();
 
 const port = process.env.PORT || 3000
@@ -16,10 +17,28 @@ hbs.registerPartials(partialsPath)
 app.use(express.static(publicDirectoryPath))
 
 app.get('',(req,res)=>{
-    res.render("index",{
-        title: 'Weatherly',
-        name:"Sachin Sharma"
+    getQuotes((error,data)=>{
+        if(error){
+            let quote = "Wherever you go, no matter what the weather, always bring your own shine"
+            let author = "-Anthony J. D'angelo"
+            res.render("index",{
+                title: 'Weatherly',
+                name:"Sachin Sharma",
+                quote,
+                author
+            })
+        }else{
+            let quote = data.content
+            let author = data.originator.name
+            res.render("index",{
+                title: 'Weatherly',
+                name:"Sachin Sharma",
+                quote,
+                author
+            })
+        }
     })
+    
 })
 app.get("/about",(req,res)=>{
     res.render("about",{
@@ -36,6 +55,7 @@ app.get('/help',(req,res)=>{
 })
 
 app.get('/weather',(req,res)=>{
+    
     if(!req.query.address){
         return res.send({
             error:"Enter an address first!"
