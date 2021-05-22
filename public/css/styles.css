@@ -21,6 +21,7 @@ footer{
 header{
     color:chocolate;
     margin-top: 16px;
+    max-width: 1300px;
     margin-bottom: 48px;
     border-bottom:1px solid burlywood ;
     padding-bottom:16px ;
@@ -34,8 +35,16 @@ header{
     padding-left: 90%;
 }
 h1{
+    
     font-size: 64px;
     margin-bottom: 16px;
+}
+h2{
+    font-size: 50px;
+    margin-bottom: 16px;
+}
+p{
+    max-width: 1000px;
 }
 header a{
     color:chocolate;

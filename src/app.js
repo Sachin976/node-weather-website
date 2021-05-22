@@ -1,21 +1,20 @@
-const path = require('path')
+const path = require('path');
 const express = require("express");
-const hbs = require('hbs')
-const forecast = require('./utils/forecast.js')
-const geocode = require('./utils/geocode.js')
+const forecast = require('./utils/forecast.js');
+const geocode = require('./utils/geocode.js');
 const getQuotes = require('./utils/quotes.js');
+const hbs = require('hbs');
+
 const app = express();
+const port = process.env.PORT || 3000;
+const publicDirectoryPath = path.join(__dirname,"../public");
+const viewsPath = path.join(__dirname,"../templates/views");
+const partialsPath = path.join(__dirname,"../templates/partials");
 
-const port = process.env.PORT || 3000
-const publicDirectoryPath = path.join(__dirname,"../public")
-const viewsPath = path.join(__dirname,"../templates/views")
-const partialsPath = path.join(__dirname,"../templates/partials")
-
-app.set("view engine","hbs")
-app.set("views",viewsPath)
-hbs.registerPartials(partialsPath)
-app.use(express.static(publicDirectoryPath))
-
+app.set("view engine","hbs");
+app.set("views",viewsPath);
+hbs.registerPartials(partialsPath);
+app.use(express.static(publicDirectoryPath));
 app.get('',(req,res)=>{
     getQuotes((error,data)=>{
         if(error){
@@ -31,7 +30,7 @@ app.get('',(req,res)=>{
             let quote = data.content
             let author = data.originator.name
             res.render("index",{
-                title: 'Weatherly',
+                title: 'Weather',
                 name:"Sachin Sharma",
                 quote,
                 author
@@ -40,15 +39,24 @@ app.get('',(req,res)=>{
     })
     
 })
+
+app.get("/covid",(req,res)=>{
+    res.render("covid",{
+        title: "COVID-19",
+        name: "Sachin Sharma",
+        
+    })
+})
+
 app.get("/about",(req,res)=>{
     res.render("about",{
-        title:'About me',
+        title:'About',
         name: "Sachin Sharma"
     })
 })
 app.get('/help',(req,res)=>{
     res.render("help",{
-        title:"Help page",
+        title:"Help",
         des:"If you have any query contact me at sachinshoff@gmail.com",
         name:"Sachin Sharma"
     })
