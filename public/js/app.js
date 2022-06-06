@@ -8,6 +8,11 @@ let message4 = document.querySelector("#message-4")
 let message5 = document.querySelector("#message-5")
 let message6 = document.querySelector("#message-6")
 let message7 = document.querySelector("#message-7")
+let testbutton = document.getElementById('test')
+
+testbutton.onclick = ()=>{
+    window.open('https://www.amazon.in/','_blank')
+}
 
 weatherForm.addEventListener("submit",(e)=>{
     e.preventDefault()
