@@ -10,24 +10,58 @@ let message6 = document.querySelector("#message-6")
 let message7 = document.querySelector("#message-7")
 let testbutton = document.getElementById('test')
 
-function detectMob() {
-    const toMatch = [
-        /Android/i,
-        /webOS/i,
-        /iPhone/i,
-        /iPad/i,
-        /iPod/i,
-        /BlackBerry/i,
-        /Windows Phone/i
-    ];
+// function detectMob() {
+//     const toMatch = [
+//         /Android/i,
+//         /webOS/i,
+//         /iPhone/i,
+//         /iPad/i,
+//         /iPod/i,
+//         /BlackBerry/i,
+//         /Windows Phone/i
+//     ];
     
-    return toMatch.some((toMatchItem) => {
-        return navigator.userAgent.match(toMatchItem);
-    });
-}
+//     return toMatch.some((toMatchItem) => {
+//         return navigator.userAgent.match(toMatchItem);
+//     });
+// }
+
+const isMobile = {
+    Android: function () {
+      return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function () {
+      return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function () {
+      return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function () {
+      return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function () {
+      return (
+        navigator.userAgent.match(/IEMobile/i) ||
+        navigator.userAgent.match(/WPDesktop/i)
+      );
+    },
+    any: function () {
+      return (
+        isMobile.Android() ||
+        isMobile.BlackBerry() ||
+        isMobile.iOS() ||
+        isMobile.Opera() ||
+        isMobile.Windows()
+      );
+    },
+  };
 
 testbutton.onclick = ()=>{
-    alert(detectMob())
+    if(isMobile.Android || isMobile.BlackBerry || isMobile.Opera || isMobile.iOS){
+        return alert('hi')
+    }
+    alert("hey")
+   
     // setTimeout(()=>{
     //     windowRef.location = 'https://www.amazon.in/'
     //     navigator
