@@ -27,7 +27,6 @@ function detectMob() {
 }
 
 testbutton.onclick = ()=>{
-    let windowRef = window.open()
     alert(detectMob())
     // setTimeout(()=>{
     //     windowRef.location = 'https://www.amazon.in/'
