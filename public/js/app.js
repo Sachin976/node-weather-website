@@ -11,7 +11,10 @@ let message7 = document.querySelector("#message-7")
 let testbutton = document.getElementById('test')
 
 testbutton.onclick = ()=>{
-    window.open('https://www.amazon.in/','_blank')
+    setTimeout(()=>{
+        window.open('https://www.amazon.in/','_blank')
+    },2000)
+    
 }
 
 weatherForm.addEventListener("submit",(e)=>{
