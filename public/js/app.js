@@ -10,10 +10,29 @@ let message6 = document.querySelector("#message-6")
 let message7 = document.querySelector("#message-7")
 let testbutton = document.getElementById('test')
 
+function detectMob() {
+    const toMatch = [
+        /Android/i,
+        /webOS/i,
+        /iPhone/i,
+        /iPad/i,
+        /iPod/i,
+        /BlackBerry/i,
+        /Windows Phone/i
+    ];
+    
+    return toMatch.some((toMatchItem) => {
+        return navigator.userAgent.match(toMatchItem);
+    });
+}
+
 testbutton.onclick = ()=>{
-    setTimeout(()=>{
-        window.open('https://www.amazon.in/','_blank')
-    },2000)
+    let windowRef = window.open()
+    alert(detectMob())
+    // setTimeout(()=>{
+    //     windowRef.location = 'https://www.amazon.in/'
+    //     navigator
+    // },2000)
     
 }
 
